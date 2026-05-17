@@ -25,19 +25,3 @@ El proyecto fue construido utilizando buenas prácticas de desarrollo frontend y
 1. **Guía Interactiva:** Explora secciones dedicadas a la cultura, gastronomía y aventura en Medellín.
 2. **Asistente de Viajes con IA:** Gracias a la conexión con Gemini, los usuarios pueden ingresar sus preferencias (presupuesto, días, gustos) y recibir un plan optimizado al instante.
 3. **Formulario de Contacto Automatizado:** Un canal directo que procesa los mensajes a través de FormSpree de forma segura y directa al correo electrónico del administrador.
-
----
-
-## 🚀 Instrucciones de Uso y Configuración Local
-
-Si deseas clonar este repositorio y probarlo o modificarlo en tu computadora, sigue estos pasos:
-
-### Prerrequisitos
-* Un navegador web moderno (Chrome, Edge, Firefox, Safari).
-* Una clave de API (API Key) de **Google AI Studio** para habilitar las funciones de Inteligencia Artificial.
-
-### Pasos para la instalación:
-
-1. **Clona el repositorio:**
-   ```bash
-   git clone [https://github.com/AndresF-OrtegaG/medellin-plan.git](https://github.com/AndresF-OrtegaG/medellin-plan.git)
