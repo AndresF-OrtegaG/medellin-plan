@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medellin Plan</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-navbar" aria-label="Navegación principal">
+            <div class="main-navbar__container">
+                <a href="#inicio" class="main-navbar__logo-link" aria-label="Ir al inicio">
+                    <img src="Imagenes/Logo Medellin Plan.png" alt="Logo de la Empresa" class="main-navbar__logo-img">
+                </a>
+
+                <button class="main-navbar__toggle" id="js-navbar-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                    <span class="main-navbar__toggle-icon"></span>
+                </button>
+
+                <ul class="main-navbar__menu" id="js-navbar-menu">
+                    <li class="main-navbar__item">
+                        <a href="#inicio" class="main-navbar__link main-navbar__link--active">Inicio</a>
+                    </li>
+                    <li class="main-navbar__item">
+                        <a href="#beneficios" class="main-navbar__link">Beneficios</a>
+                    </li>
+                    <li class="main-navbar__item">
+                        <a href="#planes" class="main-navbar__link">Planes</a>
+                    </li>
+                    <li class="main-navbar__item">
+                        <a href="#testimonios" class="main-navbar__link">Testimonios</a>
+                    </li>
+                    <li class="main-navbar__item">
+                        <a href="#formulario" class="main-navbar__link main-navbar__link--cta">Reserva tu Parche</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-section__container">
+            <div class="hero-section__content">
+                <h1 id="hero-title" class="hero-section__title">
+                    Vive Medellín al máximo con los mejores planes locales.
+                </h1>
+                <p class="hero-section__description">
+                    ¿Aburrido de hacer siempre lo mismo? Olvídate de la rutina y arma tu próximo gran recuerdo. Desde
+                    las mejores fiestas y miradores secretos hasta parches de aventura extrema con amigos. Elige tu
+                    vibra, reserva en un minuto y prepárate para vivir Medellín como se debe. Sin complicaciones, solo
+                    diversión.
+                </p>
+                <a href="#planes" class="hero-section__btn--primary">¡Armar Mi Parche!</a>
+            </div>
+
+            <div class="hero-section__img">
+                <img src="Imagenes/Logo Medellin Plan.png" alt="Amigos de fiesta">
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="benefits-section" aria-labelledby="benefits-title">
+        <div class="benefits-section__container">
+            <header class="benefits-section__header">
+                <h2 id="benefits-title" class="benefits-section__main-title">
+                    ¿Por qué armar tu parche con nosotros?
+                </h2>
+                <p class="benefits-section__subtitle">
+                    Nos encargamos de todo para que tú y tus amigos solo se preocupen por disfrutar al máximo.
+                </p>
+            </header>
+
+            <div class="benefits-section__grid">
+                <article class="benefit-card">
+                    <div class="benefit-card__icon-container">
+                        <span class="benefit-card__icon" aria-hidden="true">🎉</span>
+                    </div>
+                    <div class="benefit-card__content">
+                        <h3 class="benefit-card__title">Logística a Nivel Experto</h3>
+                        <p class="benefit-card__benefit-tag">Cero estrés</p>
+                        <p class="benefit-card__description">
+                            Desde el transporte hasta las reservas. Nosotros coordinamos todos los detalles para que el
+                            plan fluya sin problemas ni demoras.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-card__icon-container">
+                        <span class="benefit-card__icon" aria-hidden="true">💸</span>
+                    </div>
+                    <div class="benefit-card__content">
+                        <h3 class="benefit-card__title">Precios de Combo</h3>
+                        <p class="benefit-card__benefit-tag">Más amigos, más ahorro</p>
+                        <p class="benefit-card__description">
+                            Contamos con alianzas exclusivas. Entre más grande sea tu parche, mejores tarifas y
+                            descuentos van a conseguir.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-card__icon-container">
+                        <span class="benefit-card__icon" aria-hidden="true">🎯</span>
+                    </div>
+                    <div class="benefit-card__content">
+                        <h3 class="benefit-card__title">Experiencias Verificadas</h3>
+                        <p class="benefit-card__benefit-tag">Diversión garantizada</p>
+                        <p class="benefit-card__description">
+                            Solo trabajamos con los mejores sitios de Medellín. Todos nuestros planes están probados y
+                            avalados para que la pasen brutal.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-card__icon-container">
+                        <span class="benefit-card__icon" aria-hidden="true">🛡️</span>
+                    </div>
+                    <div class="benefit-card__content">
+                        <h3 class="benefit-card__title">Atención Personalizada 24/7</h3>
+                        <p class="benefit-card__benefit-tag">Nunca los dejamos solos</p>
+                        <p class="benefit-card__description">
+                            Un coordinador de nuestro equipo estará pendiente por WhatsApp antes, durante y después del
+                            parche.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-card__icon-container">
+                        <span class="benefit-card__icon" aria-hidden="true">⚡</span>
+                    </div>
+                    <div class="benefit-card__content">
+                        <h3 class="benefit-card__title">Flexibilidad Total</h3>
+                        <p class="benefit-card__benefit-tag">Planes a tu medida</p>
+                        <p class="benefit-card__description">
+                            ¿Quieren agregar algo al plan? ¿Cambiar de fecha? Nos adaptamos a las locuras y necesidades
+                            de tu grupo.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="planes" class="pricing-section" aria-labelledby="pricing-title">
+        <div class="pricing-section__container">
+            <header class="pricing-section__header">
+                <h2 id="pricing-title" class="pricing-section__main-title">
+                    Arma tu combo y elige la locura
+                </h2>
+                <p class="pricing-section__subtitle">
+                    Escoge el plan que más se adapte a tu parche y prepárense para una experiencia inolvidable.
+                </p>
+            </header>
+
+            <div class="pricing-section__grid">
+                <article class="plan-card">
+                    <header class="plan-card__header">
+                        <h3 class="plan-card__title">Parche Chiva Rumbera</h3>
+                        <p class="plan-card__tagline">El clásico paisa que nunca falla. Recorrido por la ciudad con toda
+                            la actitud.</p>
+                        <div class="plan-card__price-container">
+                            <span class="plan-card__currency">$</span>
+                            <span class="plan-card__amount">45.000</span>
+                            <span class="plan-card__period">/por persona</span>
+                        </div>
+                    </header>
+                    <div class="plan-card__features">
+                        <ul class="plan-card__features-list">
+                            <li class="plan-card__feature-item">Recorrido de 3 horas.</li>
+                            <li class="plan-card__feature-item">Animador y DJ a bordo.</li>
+                            <li class="plan-card__feature-item">Trago de cortesía (Aguardiente).</li>
+                            <li class="plan-card__feature-item">Parada en mirador fotográfico.</li>
+                            <li class="plan-card__feature-item">Mínimo 15 personas.</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card__actions">
+                        <button type="button" class="plan-card__btn plan-card__btn--secondary js-plan-trigger"
+                            data-target="#formulario" data-plan="chiva">
+                            Elegir Plan Chiva
+                        </button>
+                    </div>
+                </article>
+
+                <article class="plan-card plan-card--featured">
+                    <header class="plan-card__header">
+                        <h3 class="plan-card__title">Parche PaintBall</h3>
+                        <p class="plan-card__tagline">Adrenalina pura. Resuelvan las diferencias del grupo a punta de
+                            pintura.</p>
+                        <div class="plan-card__price-container">
+                            <span class="plan-card__currency">$</span>
+                            <span class="plan-card__amount">65.000</span>
+                            <span class="plan-card__period">/por persona</span>
+                        </div>
+                    </header>
+                    <div class="plan-card__features">
+                        <ul class="plan-card__features-list">
+                            <li class="plan-card__feature-item">100 Bolas de pintura.</li>
+                            <li class="plan-card__feature-item">Equipamiento de seguridad completo.</li>
+                            <li class="plan-card__feature-item">Cancha temática y árbitro.</li>
+                            <li class="plan-card__feature-item">Hidratación incluida.</li>
+                            <li class="plan-card__feature-item">Mínimo 8 personas.</li>
+                            <li class="plan-card__feature-item">Pizzas al finalizar (Opcional).</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card__actions">
+                        <button type="button" class="plan-card__btn plan-card__btn--primary js-plan-trigger"
+                            data-target="#formulario" data-plan="paintball">
+                            Elegir Plan PaintBall
+                        </button>
+                    </div>
+                </article>
+
+                <article class="plan-card">
+                    <header class="plan-card__header">
+                        <h3 class="plan-card__title">Fiesta Temática</h3>
+                        <p class="plan-card__tagline">Para los que quieren exclusividad. Nosotros armamos la rumba donde
+                            quieran.</p>
+                        <div class="plan-card__price-container">
+                            <span class="plan-card__currency">$</span>
+                            <span class="plan-card__amount">120.000</span>
+                            <span class="plan-card__period">/por persona</span>
+                        </div>
+                    </header>
+                    <div class="plan-card__features">
+                        <ul class="plan-card__features-list">
+                            <li class="plan-card__feature-item">Lugar exclusivo o finca.</li>
+                            <li class="plan-card__feature-item">Decoración personalizada.</li>
+                            <li class="plan-card__feature-item">Comida y coctelería básica.</li>
+                            <li class="plan-card__feature-item">Sonido profesional.</li>
+                            <li class="plan-card__feature-item">Mínimo 20 personas.</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card__actions">
+                        <button type="button" class="plan-card__btn plan-card__btn--secondary js-plan-trigger"
+                            data-target="#formulario" data-plan="fiesta">
+                            Elegir Plan Fiesta
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="testimonials-section" aria-labelledby="testimonials-title">
+        <div class="testimonials-section__container">
+            <header class="testimonials-section__header">
+                <h2 id="testimonials-title" class="testimonials-section__main-title">
+                    Lo que dicen los parceros
+                </h2>
+                <p class="testimonials-section__subtitle">
+                    No nos creas a nosotros, mira lo que opinan los grupos que ya vivieron la experiencia.
+                </p>
+            </header>
+
+            <div class="testimonials-carousel">
+                <div class="testimonials-carousel__track" id="js-testimonials-track">
+                    <article class="testimonial-card">
+                        <div class="testimonial-card__rating" aria-label="Calificación de 5 estrellas">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <blockquote class="testimonial-card__quote">
+                            <p class="testimonial-card__text">
+                                "¡Brutal la organización! Éramos 20 personas para un cumpleaños y coordinar eso siempre es
+                                un desastre. Con Medellín Plan no nos preocupamos por nada, el paintball estuvo de locos.
+                                Recomendadísimos."
+                            </p>
+                            <footer class="testimonial-card__author-info">
+                                <cite class="testimonial-card__author-name">Mateo Saldarriaga</cite>
+                                <span class="testimonial-card__author-location">Medellin, Antioquia</span>
+                            </footer>
+                        </blockquote>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-card__rating" aria-label="Calificación de 5 estrellas">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <blockquote class="testimonial-card__quote">
+                            <p class="testimonial-card__text">
+                                "La chiva rumbera fue la mejor integración que ha tenido la empresa. El animador fue lo
+                                máximo y el servicio al cliente previo fue súper paciente con todos nuestros cambios de última hora."
+                            </p>
+                            <footer class="testimonial-card__author-info">
+                                <cite class="testimonial-card__author-name">Valentina Mejía</cite>
+                                <span class="testimonial-card__author-location">Envigado</span>
+                            </footer>
+                        </blockquote>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-card__rating" aria-label="Calificación de 4.5 estrellas">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <blockquote class="testimonial-card__quote">
+                            <p class="testimonial-card__text">
+                                "Armamos una fiesta temática neón y quedó mejor de lo que esperábamos. La finca increíble,
+                                el sonido impecable. Vale cada peso por no tener el estrés de organizar."
+                            </p>
+                            <footer class="testimonial-card__author-info">
+                                <cite class="testimonial-card__author-name">Andrés Felipe Restrepo</cite>
+                                <span class="testimonial-card__author-location">Medellin, Antioquia</span>
+                            </footer>
+                        </blockquote>
+                    </article>
+                </div>
+                
+                <div class="testimonials-carousel__nav">
+                    <button type="button" class="testimonials-carousel__btn" id="js-test-prev" aria-label="Anterior">←</button>
+                    <button type="button" class="testimonials-carousel__btn" id="js-test-next" aria-label="Siguiente">→</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="formulario" class="booking-section" aria-labelledby="booking-title">
+        <div class="booking-section__container">
+            <header class="booking-section__header">
+                <h2 id="booking-title" class="booking-section__main-title">
+                    Reserva tu parche en un minuto
+                </h2>
+                <p class="booking-section__subtitle">
+                    Completa tus datos, elige tu plan y nuestro equipo te contactará de inmediato para confirmar tu
+                    fecha.
+                </p>
+            </header>
+
+            <div id="js-success-message" class="booking-success" style="display: none;">
+                <div class="booking-success__icon">🎉</div>
+                <h3 class="booking-success__title">¡Tu parche ya está reservado!</h3>
+                <p class="booking-success__text">Ya recibimos tus datos. Nuestro equipo se está poniendo en contacto
+                    contigo a través de WhatsApp para confirmar los detalles.</p>
+                <button type="button" id="js-btn-reset-form" class="booking-success__btn">Hacer otra reserva</button>
+            </div>
+
+            <form action="https://formspree.io/f/mredzklq" class="booking-form" id="js-booking-form" method="POST" >
+
+                <div class="booking-form__progress-container" aria-hidden="true">
+                    <div class="booking-form__progress-bar" id="js-form-progress"></div>
+                </div>
+
+                <div class="booking-form__group">
+                    <label for="form-name" class="booking-form__label">Nombre Completo</label>
+                    <input type="text" id="form-name" name="Nombre" class="booking-form__input"
+                        placeholder="Ej. Juan Carlos Pérez" required>
+                </div>
+
+                <div class="booking-form__group">
+                    <label for="form-email" class="booking-form__label">Correo Electrónico</label>
+                    <input type="email" id="form-email" name="Correo" class="booking-form__input"
+                        placeholder="Ej. juan@correo.com" required>
+                </div>
+
+                <div class="booking-form__group">
+                    <label for="form-phone" class="booking-form__label">Teléfono / WhatsApp</label>
+                    <input type="tel" id="form-phone" name="Teléfono" class="booking-form__input"
+                        placeholder="Ej. 300 123 4567" required>
+                </div>
+
+                <div class="booking-form__group">
+                    <label for="form-plan" class="booking-form__label">Tipo de Plan</label>
+                    <select id="form-plan" name="Plan" class="booking-form__select" required>
+                        <option value="" disabled selected>-- Selecciona un plan --</option>
+                        <option value="chiva">Parche Chiva Rumbera</option>
+                        <option value="paintball">Parche PaintBall</option>
+                        <option value="fiesta">Fiesta Temática</option>
+                    </select>
+                </div>
+
+                <div class="booking-form__actions">
+                    <button type="submit" class="booking-form__btn-submit">
+                        ¡Asegurar mis cupos ya!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contacto" class="main-footer" aria-labelledby="footer-title">
+        <div class="main-footer__container">
+            <div class="main-footer__brand">
+                <h2 id="footer-title" class="main-footer__logo-text">Medellín Parches</h2>
+                <p class="main-footer__tagline">Creamos tus mejores recuerdos en la ciudad de la eterna primavera.</p>
+            </div>
+
+            <div class="main-footer__contact">
+                <h3 class="main-footer__section-title">Contacto</h3>
+                <address class="main-footer__address">
+                    <p class="main-footer__info-item">
+                        <span class="main-footer__icon" aria-hidden="true">📞</span>
+                        <a href="tel:+573001234567" class="main-footer__link">+57 300 123 4567</a>
+                    </p>
+                    <p class="main-footer__info-item">
+                        <span class="main-footer__icon" aria-hidden="true">✉️</span>
+                        <a href="mailto:reservas@medellinparches.com" class="main-footer__link">reservas@medellinparches.com</a>
+                    </p>
+                    <p class="main-footer__info-item">
+                        <span class="main-footer__icon" aria-hidden="true">📍</span>
+                        <span>El Poblado, Medellín, Colombia</span>
+                    </p>
+                </address>
+            </div>
+
+            <div class="main-footer__social">
+                <h3 class="main-footer__section-title">Síguenos en Redes</h3>
+                <ul class="main-footer__social-list">
+                    <li class="main-footer__social-item">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="main-footer__social-link"
+                            aria-label="Síguenos en Instagram">
+                            <span class="main-footer__social-icon" aria-hidden="true">📸</span> Instagram
+                        </a>
+                    </li>
+                    <li class="main-footer__social-item">
+                        <a href="https://tiktok.com" target="_blank" rel="noopener" class="main-footer__social-link"
+                            aria-label="Síguenos en TikTok">
+                            <span class="main-footer__social-icon" aria-hidden="true">🎵</span> TikTok
+                        </a>
+                    </li>
+                    <li class="main-footer__social-item">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="main-footer__social-link"
+                            aria-label="Síguenos en Facebook">
+                            <span class="main-footer__social-icon" aria-hidden="true">👥</span> Facebook
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-footer__bottom">
+            <div class="main-footer__bottom-container">
+                <p class="main-footer__copy">&copy; 2026 Medellín Parches. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="js-scroll-top" class="scroll-top-btn" aria-label="Volver arriba">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1195 @@
+/* ==========================================================================
+   0. CONFIGURACIÓN GLOBAL Y RESET
+   ========================================================================== */
+:root {
+    /* Paleta de Colores (Inspirada en la energía de Medellín) */
+    --color-primary: #e63946;
+    /* Color de acento (Botones principales) */
+    --color-primary-hover: #cb2d3a;
+    /* Hover de botones principales */
+    --color-secondary: #1d3557;
+    /* Color oscuro de contraste (Títulos) */
+    --color-text: #4a4a4a;
+    /* Color del texto de párrafos */
+    --color-bg-light: #f8f9fa;
+    /* Fondos claros */
+    --color-white: #ffffff;
+    
+    /* Tipografía y Fuentes */
+    --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    /* Espaciados y Medidas */
+    --max-width: 1200px;
+    --header-height: 70px;
+    /* Animaciones */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    padding-top: var(--header-height);
+    /* Colchón para que el header fijo no tape el contenido */
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   1. MÓDULO: NAVEGADOR PRINCIPAL (.main-header y .main-navbar)
+   ========================================================================== */
+.main-header {
+    background-color: var(--color-white);
+    height: var(--header-height);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.main-navbar {
+    height: 100%;
+}
+
+.main-navbar__container {
+    max-width: var(--max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-navbar__logo-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-navbar__logo-img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Botón Hamburguesa Móvil */
+.main-navbar__toggle {
+    display: block;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+.main-navbar__toggle-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-secondary);
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.main-navbar__toggle-icon::before,
+.main-navbar__toggle-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: var(--transition-smooth);
+}
+.main-navbar__toggle-icon::before { top: -8px; }
+.main-navbar__toggle-icon::after { top: 8px; }
+
+/* Menú de Navegación Desplegable (Mobile-First) */
+.main-navbar__menu {
+    list-style: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-smooth);
+}
+
+/* Clase activada por JS */
+.main-navbar__menu--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.main-navbar__link {
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.main-navbar__link:hover,
+.main-navbar__link--active {
+    color: var(--color-primary);
+}
+
+/* Botón Contacto Destacado (CTA) */
+.main-navbar__link--cta {
+    background-color: var(--color-primary);
+    color: var(--color-white) !important;
+    text-align: center;
+    padding: 12px 24px;
+    border-radius: 6px;
+}
+
+.main-navbar__link--cta:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
+}
+
+/* MEDIA QUERY: Escritorio */
+@media screen and (min-width: 768px) {
+    .main-navbar__toggle {
+        display: none;
+    }
+
+    .main-navbar__menu {
+        position: static;
+        width: auto;
+        flex-direction: row;
+        padding: 0;
+        gap: 25px;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .main-navbar__link {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .main-navbar__link--cta {
+        padding: 10px 20px;
+    }
+}
+
+/* ==========================================================================
+   2. MÓDULO: HERO SECTION (INICIO) (.hero-section)
+   ========================================================================== */
+.hero-section {
+    background-color: var(--color-bg-light);
+    background-image: linear-gradient(rgba(29, 53, 87, 0.85), rgba(29, 53, 87, 0.95)), url('ruta-imagen-medellin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    padding: 60px 20px;
+    color: var(--color-white);
+}
+
+.hero-section__container {
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.hero-section__content {
+    max-width: 700px;
+    text-align: center;
+}
+
+.hero-section__title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--color-white);
+    letter-spacing: -0.5px;
+}
+
+.hero-section__description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-section__btn--primary {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    transition: var(--transition-smooth);
+}
+
+.hero-section__btn--primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+}
+
+.hero-section__img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.hero-section__img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.hero-section__img img:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+    .hero-section {
+        padding: 100px 20px;
+    }
+
+    .hero-section__container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .hero-section__content {
+        text-align: left;
+    }
+
+    .hero-section__title {
+        font-size: 3.5rem;
+    }
+
+    .hero-section__description {
+        font-size: 1.25rem;
+    }
+
+    .hero-section__img {
+        max-width: 50%;
+    }
+}
+
+/* ==========================================================================
+   3. MÓDULO: SECCIÓN DE BENEFICIOS (.benefits-section)
+   ========================================================================== */
+.benefits-section {
+    padding: 80px 20px;
+    background-color: var(--color-white);
+}
+
+.benefits-section__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.benefits-section__header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.benefits-section__main-title {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.benefits-section__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.benefits-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: var(--color-bg-light);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: var(--transition-smooth);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(29, 53, 87, 0.08);
+    border-color: rgba(29, 53, 87, 0.1);
+}
+
+.benefit-card__icon-container {
+    background-color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: var(--transition-smooth);
+}
+
+.benefit-card:hover .benefit-card__icon-container {
+    background-color: var(--color-secondary);
+}
+
+.benefit-card__icon {
+    font-size: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.benefit-card:hover .benefit-card__icon {
+    transform: scale(1.1);
+}
+
+.benefit-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.benefit-card__title {
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.benefit-card__benefit-tag {
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.benefit-card__description {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+@media screen and (min-width: 600px) {
+    .benefits-section__main-title {
+        font-size: 2.5rem;
+    }
+    .benefits-section__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .benefits-section {
+        padding: 100px 20px;
+    }
+    .benefits-section__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   4. MÓDULO: SECCIÓN DE PLANES Y PRECIOS (.pricing-section)
+   ========================================================================== */
+.pricing-section {
+    padding: 80px 20px;
+    background-color: var(--color-bg-light);
+}
+
+.pricing-section__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.pricing-section__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pricing-section__main-title {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.pricing-section__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pricing-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.plan-card {
+    background-color: var(--color-white);
+    padding: 35px 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.plan-card--featured {
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 15px 35px rgba(29, 53, 87, 0.1);
+}
+
+.plan-card__header {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 25px;
+}
+
+.plan-card__title {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.plan-card__tagline {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    min-height: 40px;
+}
+
+.plan-card__price-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.plan-card__currency {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-right: 2px;
+}
+
+.plan-card__amount {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+    line-height: 1;
+}
+
+.plan-card__period {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin-left: 5px;
+}
+
+.plan-card__features {
+    margin-bottom: 35px;
+    flex-grow: 1;
+}
+
+.plan-card__features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.plan-card__feature-item {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    position: relative;
+    padding-left: 25px;
+}
+
+.plan-card__feature-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.plan-card__actions {
+    text-align: center;
+}
+
+.plan-card__btn {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.plan-card__btn--secondary {
+    background-color: var(--color-bg-light);
+    color: var(--color-secondary);
+    border: 1px solid rgba(29, 53, 87, 0.1);
+}
+
+.plan-card__btn--secondary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
+}
+
+.plan-card__btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+
+.plan-card__btn--primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(230, 57, 70, 0.5);
+}
+
+@media screen and (min-width: 992px) {
+    .pricing-section {
+        padding: 100px 20px;
+    }
+    .pricing-section__main-title {
+        font-size: 2.5rem;
+    }
+    .pricing-section__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    .plan-card--featured {
+        transform: scale(1.05);
+        z-index: 10;
+    }
+    .plan-card--featured:hover {
+        transform: scale(1.07) translateY(-5px);
+    }
+    .plan-card:not(.plan-card--featured):hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* ==========================================================================
+   5. MÓDULO: SECCIÓN DE TESTIMONIOS (.testimonials-section)
+   ========================================================================== */
+.testimonials-section {
+    padding: 80px 20px;
+    background-color: var(--color-white);
+}
+
+.testimonials-section__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.testimonials-section__header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.testimonials-section__main-title {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.testimonials-section__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background-color: var(--color-bg-light);
+    padding: 35px 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: var(--transition-smooth);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--color-white);
+    box-shadow: 0 10px 25px rgba(29, 53, 87, 0.06);
+    border-color: rgba(29, 53, 87, 0.08);
+}
+
+.testimonial-card__rating {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.testimonial-card__quote {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.testimonial-card__text {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.testimonial-card__author-info {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.testimonial-card__author-name {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.testimonial-card__author-location {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+    .testimonials-section {
+        padding: 100px 20px;
+    }
+    .testimonials-section__main-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* ==========================================================================
+   6. MÓDULO: SECCIÓN DE FORMULARIO DE RESERVA (.booking-section)
+   ========================================================================== */
+.booking-section {
+    padding: 80px 20px;
+    background-color: var(--color-bg-light);
+}
+
+.booking-section__container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.booking-section__header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.booking-section__main-title {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.booking-section__subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.booking-form {
+    background-color: var(--color-white);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(29, 53, 87, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.booking-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.booking-form__label {
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.booking-form__input,
+.booking-form__select {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    background-color: var(--color-white);
+    border: 1px solid rgba(29, 53, 87, 0.2);
+    border-radius: 8px;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.booking-form__input::placeholder {
+    color: #a0aec0;
+}
+
+.booking-form__input:focus,
+.booking-form__select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+}
+
+.booking-form__select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d3557' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+.booking-form__actions {
+    margin-top: 10px;
+}
+
+.booking-form__btn-submit {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.booking-form__btn-submit:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+}
+
+.booking-form__btn-submit:active {
+    transform: translateY(0);
+}
+
+@media screen and (min-width: 768px) {
+    .booking-section {
+        padding: 100px 20px;
+    }
+    .booking-section__main-title {
+        font-size: 2.5rem;
+    }
+    .booking-form {
+        padding: 50px 40px;
+    }
+}
+
+/* ==========================================================================
+   ADICIÓN: Estilos para el Estado de Formulario Enviado (Éxito)
+   ========================================================================== */
+.booking-success {
+    background-color: var(--color-white);
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(29, 53, 87, 0.05);
+    border: 2px dashed #2ec4b6;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeInForm 0.5s ease-in-out;
+}
+
+.booking-success__icon {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.booking-success__title {
+    color: var(--color-secondary);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.booking-success__text {
+    color: var(--color-text);
+    font-size: 1.05rem;
+    max-width: 450px;
+    line-height: 1.6;
+}
+
+.booking-success__btn {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    margin-top: 10px;
+}
+
+.booking-success__btn:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeInForm {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   7. MÓDULO: FOOTER DE CONTACTO Y REDES SOCIALES (.main-footer)
+   ========================================================================== */
+.main-footer {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 60px 20px 20px 20px;
+    border-top: 3px solid var(--color-primary);
+}
+
+.main-footer__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.main-footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.main-footer__logo-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.5px;
+}
+
+.main-footer__tagline {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 300px;
+}
+
+.main-footer__section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: var(--color-white);
+}
+
+.main-footer__address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.main-footer__info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.main-footer__icon {
+    font-size: 1.1rem;
+    display: inline-block;
+}
+
+.main-footer__link {
+    transition: var(--transition-smooth);
+}
+
+.main-footer__link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.main-footer__social-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.main-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: var(--transition-smooth);
+}
+
+.main-footer__social-link:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.main-footer__social-icon {
+    font-size: 1.1rem;
+}
+
+.main-footer__bottom {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.main-footer__bottom-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-footer__copy {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (min-width: 768px) {
+    .main-footer {
+        padding: 80px 20px 30px 20px;
+    }
+    .main-footer__container {
+        display: grid;
+        grid-template-columns: 1.5fr repeat(2, 1fr);
+        gap: 50px;
+    }
+    .main-footer__bottom {
+        margin-top: 60px;
+    }
+    .main-footer__bottom-container {
+        text-align: left;
+    }
+}
+
+/* ==========================================================================
+   8. NUEVOS SNIPPETS (Scroll, Progress Bar, Carousel)
+   ========================================================================== */
+
+/* --- A. CARRUSEL DE TESTIMONIOS --- */
+.testimonials-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.testimonials-carousel__track {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px; /* Espacio para la sombra de las tarjetas */
+    scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
+
+.testimonials-carousel__track::-webkit-scrollbar {
+    display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+/* Forzamos a las tarjetas originales a comportarse como slides */
+.testimonials-carousel__track > .testimonial-card {
+    scroll-snap-align: center;
+    min-width: 100%; /* En móviles, 1 tarjeta ocupa el 100% */
+    flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .testimonials-carousel__track > .testimonial-card {
+        min-width: calc(50% - 15px); /* Tablet: 2 tarjetas */
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .testimonials-carousel__track > .testimonial-card {
+        min-width: calc(33.333% - 20px); /* Desktop: 3 tarjetas */
+    }
+}
+
+.testimonials-carousel__nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.testimonials-carousel__btn {
+    background-color: var(--color-bg-light);
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.testimonials-carousel__btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- B. BARRA DE PROGRESO DEL FORMULARIO --- */
+.booking-form__progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(29, 53, 87, 0.1);
+    border-radius: 4px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.booking-form__progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-primary);
+    transition: width 0.4s ease;
+}
+
+/* --- C. BOTÓN SCROLL-TO-TOP --- */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: var(--transition-smooth);
+}
+
+.scroll-top-btn--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-5px);
+}
