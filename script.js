@@ -31,49 +31,35 @@ document.addEventListener('DOMContentLoaded', () => {
     checkFormStatus();
 
     if (bookingForm) {
-        bookingForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevenimos que Formspree nos mande a su página genérica
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evita que la página se recargue de golpe
 
-            const submitBtn = bookingForm.querySelector('.booking-form__btn-submit');
-            const originalBtnText = submitBtn.textContent;
-            
-            // Cambiamos el texto para que el usuario sepa que está cargando
-            submitBtn.textContent = 'Enviando reserva...';
-            submitBtn.style.pointerEvents = 'none'; // Evitar doble clic
-
-            // Empaquetamos los datos automáticamente
+            // Capturamos los datos que el usuario escribió
             const formData = new FormData(bookingForm);
+            const data = Object.fromEntries(formData.entries());
 
             try {
-                // Enviamos los datos a Formspree usando Fetch
-                const response = await fetch(bookingForm.action, {
-                    method: bookingForm.method,
-                    body: formData,
+                // Enviamos los datos a tu nuevo servidor en el puerto 3000
+                const response = await fetch('http://localhost:3000/api/cliente', {
+                    method: 'POST',
                     headers: {
-                        'Accept': 'application/json' // Formspree pide esto para responder por AJAX
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
                 });
 
                 if (response.ok) {
-                    // ¡Éxito! Formspree lo recibió. 
-                    // Guardamos en LocalStorage para ocultar el formulario
+                    // Si el servidor responde OK, mostramos el éxito
                     localStorage.setItem('parcheReservado', 'true');
-                    bookingForm.reset();
-                    checkFormStatus();
-
-                    const formSection = document.getElementById('formulario');
-                    if (formSection) {
-                        formSection.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    bookingForm.style.display = 'none';
+                    if (successMessage) successMessage.style.display = 'flex';
+                    alert("¡Tus datos se guardaron correctamente en la Base de Datos!");
                 } else {
-                    alert("Uy, hubo un problema al enviar la reserva. Intenta nuevamente.");
+                    alert('Hubo un error al guardar la reserva.');
                 }
             } catch (error) {
-                alert("Error de conexión. Revisa tu internet e intenta de nuevo.");
-            } finally {
-                // Si falla, regresamos el botón a la normalidad
-                submitBtn.textContent = originalBtnText;
-                submitBtn.style.pointerEvents = 'auto';
+                console.error('Error conectando con el servidor:', error);
+                alert('Asegúrate de que el servidor Node.js esté encendido.');
             }
         });
     }
@@ -173,17 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext = document.getElementById('js-test-next');
 
     if (track && btnPrev && btnNext) {
-        const getCardWidth = () => {
-            const firstCard = track.querySelector('.testimonial-card');
-            return firstCard ? firstCard.offsetWidth + 30 : 0; 
-        };
-
+        // Al usar 'track.clientWidth', el scroll se desplaza exactamente
+        // el ancho visible del contenedor. Esto significa que en móvil mueve 1,
+        // en tablet mueve 2, y en PC mueve 3 tarjetas a la vez.
         btnNext.addEventListener('click', () => {
-            track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+            track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
         });
 
         btnPrev.addEventListener('click', () => {
-            track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+            track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
         });
     }
 });

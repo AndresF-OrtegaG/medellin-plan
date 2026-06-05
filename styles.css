@@ -721,27 +721,108 @@ a {
     font-style: italic;
 }
 
+/* Nuevos estilos para la imagen y los textos de información */
 .testimonial-card__author-info {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     padding-top: 15px;
     display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-card__img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+.testimonial-card__author-details {
+    display: flex;
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
 }
 
 .testimonial-card__author-name {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--color-secondary);
     font-weight: 700;
     font-style: normal;
+    line-height: 1.2;
+}
+
+.testimonial-card__author-role {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    line-height: 1.2;
 }
 
 .testimonial-card__author-location {
     font-size: 0.85rem;
     color: var(--color-primary);
     font-weight: 600;
+    margin-top: 2px;
 }
 
+/* --- CARRUSEL DE TESTIMONIOS --- */
+.testimonials-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.testimonials-carousel__track {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px; /* Espacio para la sombra de las tarjetas */
+    scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
+
+.testimonials-carousel__track::-webkit-scrollbar {
+    display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+/* Comportamiento estricto de las tarjetas para evitar que se desborden y respeten las columnas */
+.testimonials-carousel__track > .testimonial-card {
+    scroll-snap-align: start;
+    flex: 0 0 100%; /* En móviles: 1 tarjeta ocupa el 100% sin crecer más */
+    max-width: 100%;
+}
+
+.testimonials-carousel__nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.testimonials-carousel__btn {
+    background-color: var(--color-bg-light);
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.testimonials-carousel__btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- MEDIA QUERIES --- */
 @media screen and (min-width: 768px) {
     .testimonials-section {
         padding: 100px 20px;
@@ -749,8 +830,18 @@ a {
     .testimonials-section__main-title {
         font-size: 2.5rem;
     }
+    .testimonials-carousel__track > .testimonial-card {
+        flex: 0 0 calc(50% - 15px); /* Tablet: 2 tarjetas fijas */
+        max-width: calc(50% - 15px);
+    }
 }
 
+@media screen and (min-width: 992px) {
+    .testimonials-carousel__track > .testimonial-card {
+        flex: 0 0 calc(33.333% - 20px); /* Desktop: 3 tarjetas fijas */
+        max-width: calc(33.333% - 20px);
+    }
+}
 /* ==========================================================================
    6. MÓDULO: SECCIÓN DE FORMULARIO DE RESERVA (.booking-section)
    ========================================================================== */
